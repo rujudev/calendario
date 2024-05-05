@@ -1,0 +1,96 @@
+@use '../utils/breakpoints' as *;
+@use '../base/colors';
+
+.nav {
+    justify-content: center;
+    align-items: center;
+
+    .btn-menu-container {
+        &, & > .btn-menu {
+            display: none;
+        }
+    }
+
+    .tabs-container {
+        display: flex;
+
+        .tab {
+            text-align: center;
+
+            &__item {
+                border: 1px solid lightgreen;
+                padding: 10px;
+
+                &:first-child {
+                    border-top-left-radius: 25%;
+                    border-bottom-left-radius: 25%;
+                }
+
+                &:last-child {
+                    border-top-right-radius: 25%;
+                    border-bottom-right-radius: 25%;    
+                }
+
+                &:hover,
+                &:active {
+                    background-color: lightblue;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .select-calendar-type-container {
+        display: flex;
+    }
+
+    @include is-breakpoint('md') { // min-width: 768px
+        display: flex;
+        background-color: colors.$color-primary;
+        max-width: 100%;
+        padding: 0 10px;
+
+        & > .btn-menu-container {
+            &, & > .btn-menu {
+                display: flex;
+            }
+
+            & > .btn-menu {
+                flex-direction: column;
+                justify-content: center;
+                width: 2rem;
+                height: 2rem;
+                border: 0;
+                background-color: transparent;
+                gap: .29rem;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                div {
+                    height: 2px;
+                    width: 100%;
+                    border-radius: 5px;
+                    transition: all .3s;
+                    transform-origin: left;
+                    background-color: black;
+                }
+
+                &.open div {
+                    &:first-child {
+                        transform: rotate(45deg);
+                    }
+    
+                    &:nth-child(2) {
+                        opacity: 0;
+                    }
+    
+                    &:last-child {
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+        }
+    }
+}

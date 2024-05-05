@@ -1,0 +1,16 @@
+$breakpoints: (
+    'md': '(min-width: 768px)',
+    'md-lg': '(min-width: 768px) and (max-width: 991px)',
+    'lg-xl': '(min-width: 992px) and (max-width: 1200px)',
+    'xl': '(min-width: 1200px)'
+) !default;
+
+@mixin is-breakpoint($breakpoint) {
+    $hasBreakpoint: map-has-key($breakpoints, $breakpoint);
+
+    @if $hasBreakpoint {
+        @media #{map-get($breakpoints, $breakpoint)} {
+            @content;
+        }
+    }
+}

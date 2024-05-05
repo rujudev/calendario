@@ -1,0 +1,209 @@
+@use '../utils/breakpoints' as *;
+
+.calendar {
+    display: grid;
+    overflow: hidden;
+    width: 100%;
+
+    .header {
+        grid-area: header;
+        justify-content: center;
+
+        & > h1 {
+            margin: 0;
+        }
+    }
+
+    .month,
+    .week,
+    .day,
+    .week-days-container,
+    .month-days-container,
+    .hours-container,
+    .hours-container .day-hour-container {
+        display: grid;
+    }
+
+    .week-days-container,
+    .week-days-container .week-day-name,
+    .week-days-container .week-day,
+    .month-days-container {
+        grid-template-columns: repeat(7, 1fr);
+    }
+
+    .week-days-container {
+        grid-area: week-days-container;
+
+        .week-day-name,
+        .week-day {
+            display: grid;
+            text-align: center;
+        }
+
+        .week-day-name {
+            grid-area: week-day-name;
+        }
+
+        .week-day {
+            grid-area: week-day;
+        }
+    }
+
+    .month-days-container {
+        grid-area: month-days-container;
+        grid-template-rows: repeat(6, 15.3vh);
+
+        .month-day {
+            border: .5px solid white;
+
+            @include is-breakpoint('md') {
+                text-align: center;
+            }
+    
+            &,
+            input {
+                cursor: default; 
+            }
+
+            &[data-correct_month="false"],
+            &[data-correct_month="true"][data-today="false"]:hover input {
+                background-color: lightgrey;
+            }
+
+            &[data-correct_month="true"] {
+                border: .5px solid lightgrey;
+
+                &,
+                input {
+                    cursor: pointer;
+                }
+            }
+
+            input {
+                background-color: transparent;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                border: none;
+                text-align: center; 
+                padding: 0;
+                font-size: 14px;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+
+    &__year,
+    &__month,
+    &__week,
+    &__day {
+        grid-template-columns: auto;
+    }
+
+    &__year,
+    &__month {
+        .month {
+            width: 100%;
+            grid-template-areas: "header"
+                                 "week-days-container"
+                                 "month-days-container";
+            grid-template-rows: repeat(3, max-content);
+            
+            .week-days-container {
+                grid-template-columns: auto;
+                grid-template-areas: "week-day-name";
+            }
+
+            @include is-breakpoint('md') {
+
+                .month-days-container {
+                    min-height: 22.5vh;
+                }
+            }
+        }
+    }
+
+    &__year {
+        grid-template-rows: repeat(12, 1fr);
+        gap: 20px;
+
+        @include is-breakpoint('md') {
+            .month-days-container {
+                grid-template-rows: repeat(6, 1fr);
+            }
+        }
+        
+        @include is-breakpoint('md-lg') {
+            grid-template-columns: auto auto;
+            grid-template-rows: repeat(6, 1fr);
+        }
+
+        @include is-breakpoint('lg-xl') {
+            grid-template-columns: repeat(3, auto);
+            grid-template-rows: repeat(4, 1fr);
+        }
+
+        @include is-breakpoint('xl') {
+            grid-template-columns: repeat(4, auto);
+            grid-template-rows: repeat(3, 1fr);
+        }
+    }
+
+    &__month {
+        @include is-breakpoint('md') {
+            .month-days-container {
+                grid-template-rows: repeat(6, 14.5vh);
+            }
+        }
+    }
+
+    &__week,
+    &__day {
+        .week,
+        .day {
+            grid-template-areas: "header"
+                                 "week-days-container"
+                                 "hours-container";
+            height: 93vh;
+
+            .header {
+                margin-left: 55px;
+            }
+            
+            .week-days-container {
+                grid-template-columns: 55px auto 8px;
+                grid-template-areas: ". week-day-name ."
+                                     ". week-day .";
+
+                .week-day-name,
+                .week-day {
+                    grid-template-columns: auto;
+                }
+            }
+    
+            .hours-container {
+                grid-area: hours-container;
+                grid-template-columns: auto;
+                grid-template-rows: repeat(12, 1fr);
+                overflow-y: auto;
+    
+                .day-hour-container {
+                    grid-template-columns: 55px repeat(7, 1fr);
+                }
+            }
+        }
+    }
+
+    &__day {
+        .day{
+            .hours-container {
+                .day-hour-container {
+                    grid-template-columns: 55px auto;
+                }
+            }
+        }
+    }
+}

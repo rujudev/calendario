@@ -1,0 +1,17 @@
+{
+  "name": "schedule",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./calendar/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch styles/main.scss styles/main.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "live-server": "^1.2.2"
+  }
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./styles/main.css" />
+    <link rel="icon" type="image/x-icon" href="./assets/calendar.png">
+    <title>Ruby Calendar</title>
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="tabs-container">
+                <div class="tab tab__item" data-calendar_type="year">Año</div>
+                <div class="tab tab__item" data-calendar_type="month">Mes</div>
+                <div class="tab tab__item" data-calendar_type="week">Semana</div>
+                <div class="tab tab__item" data-calendar_type="day">Día</div>
+            </div>
+        </nav>
+    </header>
+    <main>
+       <!--<aside class="sidebar">
+             <div id="current-month"></div>
+        </aside> -->
+        <div class="container"></div>
+    </main>
+    <script type="module" src="./calendar/index.js"></script>
+</body>
+</html>
